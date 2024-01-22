@@ -1,8 +1,8 @@
 /**
  * This is the main class where everything will be executed.
  * @author Ramiyan Gangatharan
- * @version 1.0 (January 14, 2024)
- * @since 1.0
+ * @version 1.2 (January 22, 2024)
+ * @since 1.0 (January 14, 2024)
  */
 
 public class Main
@@ -13,6 +13,7 @@ public class Main
      */
     public static void main(String[] args)
     {
-        System.out.println("Hello world!");
+        System.out.println("Hello world!\n");
+        System.out.println(CollegeInterface.formattedString);
     }
 }
