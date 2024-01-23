@@ -21,6 +21,9 @@ public class Main
     public static void main(String[] args)
     {
         User user = new User();
-        user.dump();
+        Faculty faculty = new Faculty();
+        System.out.println(user);
+        System.out.println();
+        System.out.println(faculty);
     }
 }

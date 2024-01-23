@@ -11,6 +11,4 @@ public interface CollegeInterface
 {
     String COLLEGE_NAME = "Durham college";
     String PHONE_NUMBER = "(905) 721 2000";
-
-
 }

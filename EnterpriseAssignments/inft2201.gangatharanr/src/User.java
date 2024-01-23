@@ -50,6 +50,7 @@ public class User implements CollegeInterface
     public String getEmailAddress() {return emailAddress;}
     public Date getLastAccess() {return lastAccess;}
     public Date getEnrolDate() {return enrolDate;}
+    public boolean isEnabled() {return enabled;}
     public char getType() { return type;}
     public static DateFormat getDF() {return DF;}
 
@@ -70,14 +71,15 @@ public class User implements CollegeInterface
     public User()
     {
         // Initialization
-        this.id = DEFAULT_ID;
-        this.password = DEFAULT_PASSWORD;
-        this.firstName = DEFAULT_FIRST_NAME;
-        this.lastName = DEFAULT_LAST_NAME;
-        this.emailAddress = DEFAULT_EMAIL_ADDRESS;
-        this.enrolDate = new Date();
-        this.lastAccess = new Date();
-        this.type = DEFAULT_TYPE;
+        setId(DEFAULT_ID);
+        setPassword(DEFAULT_PASSWORD);
+        setFirstName(DEFAULT_FIRST_NAME);
+        setLastName(DEFAULT_LAST_NAME);
+        setEmailAddress(DEFAULT_EMAIL_ADDRESS);
+        setEnrolDate(new Date());
+        setLastAccess(new Date());
+        setEnabled(enabled);
+        setType(DEFAULT_TYPE);
     }
 
     /**
@@ -100,15 +102,15 @@ public class User implements CollegeInterface
     )
     {
         // Initialization
-        this.id = id;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.lastAccess = lastAccess;
-        this.enrolDate = enrolDate;
-        this.enabled = enabled;
-        this.type = type;
+        setId(id);
+        setPassword(password);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmailAddress(emailAddress);
+        setLastAccess(lastAccess);
+        setEnrolDate(enrolDate);
+        setEnabled(enabled);
+        setType(type);
     }
 
     /**
@@ -131,8 +133,8 @@ public class User implements CollegeInterface
             firstName,
             lastName,
             emailAddress,
-            DF.format(enrolDate), // Directly pass the Date object
-            DF.format(lastAccess) // Directly pass the Date object
+            DF.format(enrolDate), // Directly passes the Date object
+            DF.format(lastAccess) // Directly passes the Date object
         );
     }
 

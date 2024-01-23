@@ -1,4 +1,6 @@
+import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * This is the Faculty class.
@@ -8,6 +10,7 @@ import java.util.Date;
  */
 public class Faculty extends User
 {
+    User user = new User();
     public static final String DEFAULT_SCHOOL_CODE = "SET";
     public static final String DEFAULT_SCHOOL_DESCRIPTION = "School of Engineering & Technology";
     public static final String DEFAULT_OFFICE = "H-140";
@@ -56,8 +59,36 @@ public class Faculty extends User
         setExtension(extension);
     }
 
-    public static void getTypeForDisplay()
+    // NOT NEEDED AS toString() IS OVERRIDDEN
+    public static String getTypeForDisplay()
     {
+        String Faculty = "Faculty";
+        return Faculty;
+    }
 
+    @Override
+    public String toString()
+    {
+        DateFormat DF = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CANADA);
+
+        return String.format
+        (
+            "Faculty Info for: %d \n" +
+                    "\tName: %s %s (%s) \n" +
+                    "\tCreated on: %s\n" +
+                    "\tLast Access: %s \n" +
+                    "\tInstitution: %s \n" +
+                    "\tOffice: %s \n" +
+                    "\tNumber: " + PHONE_NUMBER + " - x" + "%s \n",
+            user.getId(),
+            user.getFirstName(),
+            user.getLastName(),
+            user.getEmailAddress(),
+            DF.format(user.getEnrolDate()), // Directly passes the Date object
+            DF.format(user.getLastAccess()), // Directly passes the Date object
+            getSchoolDescription(),
+                getOffice(),
+                getExtension()
+        );
     }
 }
