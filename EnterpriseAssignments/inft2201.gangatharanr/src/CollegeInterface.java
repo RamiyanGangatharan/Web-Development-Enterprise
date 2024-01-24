@@ -4,11 +4,17 @@
  * standardization of college-related information.
  *
  * @author Ramiyan Gangatharan
- * @version 1.4 (January 23, 2024)
+ * @version 1.5 (January 24, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public interface CollegeInterface
 {
+    /**
+     * The name of the college.
+     */
     public static String COLLEGE_NAME = "Durham College";
+    /**
+     * The primary contact phone number of the college.
+     */
     public static String PHONE_NUMBER = "(905) 721 2000";
 }

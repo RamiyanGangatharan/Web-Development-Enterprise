@@ -1,22 +1,25 @@
 /**
- * This is the main class where everything will be executed. It creates an instance
- * of the User class and calls its dump method to display the user's information.
+ * This is the main class for a college management system. It serves as the entry point of the application.
+ * In this class, instances of User, Faculty, Mark, and Student classes are created and their details are
+ * displayed. The main method of this class demonstrates the creation and usage of these instances, primarily
+ * focusing on showcasing their functionalities such as displaying user information.
+ *
+ * The primary purpose of this class is to illustrate how different classes within the college management system
+ * interact and how their respective information can be displayed. It creates and utilizes objects from different
+ * classes to demonstrate their functionality and interactions.
  *
  * @author Ramiyan Gangatharan
- * @version 1.4 (January 23, 2024)
+ * @version 1.5 (January 24, 2024)
  * @since 1.0 (January 14, 2024)
  */
 
 public class Main
 {
     /**
-     * The entry point of the application.
+     * The main method that serves as the entry point for the application. It creates instances of the User,
+     * Faculty, Mark, and Student classes and calls their toString methods to display information about each object.
      *
-     * This is the main method which serves as the starting point of the program.
-     * It creates a new User object and invokes its dump method to print the user's
-     * information to the standard output.
-     *
-     * @param args command-line arguments passed to the program. Not used in this application.
+     * @param args Command line arguments (not used in this application).
      */
     public static void main(String[] args)
     {
@@ -30,11 +33,13 @@ public class Main
                     4.0f
                 );
 
+        Student student = new Student();
         System.out.println(user);
         System.out.println();
         System.out.println(faculty);
         System.out.println();
         System.out.println(mark);
         System.out.println();
+        System.out.println(student);
     }
 }

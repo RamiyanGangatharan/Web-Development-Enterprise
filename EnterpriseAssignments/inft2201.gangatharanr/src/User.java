@@ -3,22 +3,18 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Represents a user in the system. This class stores user-specific information
- * and provides methods to access and modify this information. It implements
- * the CollegeInterface and adheres to its standards.
- *
- * The class contains several static constants for default values like ID, password,
- * name, and email address. It also includes methods for verifying user IDs and
- * formatting date information according to Canadian standards.
+ * Represents a user in a college context, implementing the CollegeInterface. This class includes properties such as
+ * identification number, password, name, email address, and dates for enrolment and last access. It provides methods
+ * to get and set user attributes and other functionalities like ID verification and printing user information.
  *
  * @author Ramiyan Gangatharan
- * @version 1.4 (January 23, 2024)
+ * @version 1.5 (January 24, 2024)
  * @since 1.0 (January 14, 2024)
  */
 
 public class User implements CollegeInterface
 {
-    // Constants for default values
+    // Constants defining default and boundary values
     public static final long DEFAULT_ID = 100123456;
     public static final String DEFAULT_PASSWORD = "password";
     public static final byte MINIMUM_PASSWORD_LENGTH = 8;
@@ -66,7 +62,7 @@ public class User implements CollegeInterface
     public void setType(char type) {this.type = type;}
 
     /**
-     * Default constructor which initializes a user with default values.
+     * Default constructor. Initializes a user with default values for all fields.
      */
     public User()
     {
@@ -83,7 +79,7 @@ public class User implements CollegeInterface
     }
 
     /**
-     * Parameterized constructor for creating a user with specific attributes.
+     * Parameterized constructor to create a user with specific attributes.
      *
      * @param id The user's identification number.
      * @param password The user's password.
@@ -114,9 +110,9 @@ public class User implements CollegeInterface
     }
 
     /**
-     * Returns a string representation of the User object.
+     * Returns a string representation of the User object, detailing user's ID, name, email, creation date, and last access date.
      *
-     * @return A string detailing the user's ID, name, email, creation date, and last access date.
+     * @return A formatted string containing the user's details.
      */
     @Override
     public String toString()
