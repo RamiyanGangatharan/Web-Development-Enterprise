@@ -3,7 +3,7 @@
  * of the User class and calls its dump method to display the user's information.
  *
  * @author Ramiyan Gangatharan
- * @version 1.2 (January 22, 2024)
+ * @version 1.4 (January 23, 2024)
  * @since 1.0 (January 14, 2024)
  */
 
@@ -22,8 +22,19 @@ public class Main
     {
         User user = new User();
         Faculty faculty = new Faculty();
+        Mark mark = new Mark
+                (
+                    "WEBD2201",
+                    "Web Development - Fundamentals",
+                    71,
+                    4.0f
+                );
+
         System.out.println(user);
         System.out.println();
         System.out.println(faculty);
+        System.out.println();
+        System.out.println(mark);
+        System.out.println();
     }
 }

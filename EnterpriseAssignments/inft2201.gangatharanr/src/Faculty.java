@@ -5,7 +5,7 @@ import java.util.Locale;
 /**
  * This is the Faculty class.
  * @author Ramiyan Gangatharan
- * @version 1.2 (January 22, 2024)
+ * @version 1.4 (January 23, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public class Faculty extends User
@@ -77,7 +77,7 @@ public class Faculty extends User
                     "\tName: %s %s (%s) \n" +
                     "\tCreated on: %s\n" +
                     "\tLast Access: %s \n" +
-                    "\tInstitution: %s \n" +
+                    "\tInstitution: " + COLLEGE_NAME +", %s \n" +
                     "\tOffice: %s \n" +
                     "\tNumber: " + PHONE_NUMBER + " - x" + "%s \n",
             user.getId(),
