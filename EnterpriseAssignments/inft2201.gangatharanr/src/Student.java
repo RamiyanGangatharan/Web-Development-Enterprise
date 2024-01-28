@@ -1,4 +1,5 @@
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
@@ -41,7 +42,7 @@ public class Student extends User
     /**
      * A Vector containing the student's academic marks.
      */
-    private Vector<Mark> marks = new Vector<Mark>();
+    private Vector<Mark> marks = new Vector<>();
 
     /**
      * Retrieves the program code of the student.
@@ -88,8 +89,9 @@ public class Student extends User
     /**
      * Default constructor. Initializes a new student with default values for program code and year of study.
      */
-    public Student()
+    public Student() throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
+        super();
         this.programCode = DEFAULT_PROGRAM_CODE;
         this.year = DEFAULT_YEAR;
     }
@@ -102,6 +104,7 @@ public class Student extends User
      * @param marks A Vector of Mark objects representing the student's academic marks.
      */
     public Student(String programCode, int year, Vector<Mark> marks)
+            throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         super();
         this.programCode = programCode;
@@ -116,10 +119,18 @@ public class Student extends User
      * @param year The current year of study of the student.
      */
     public Student(String programCode, int year)
+            throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         super();
         this.programCode = programCode;
         this.year = year;
+    }
+
+    public Student(long l, String password, String robert, String mcReady, String s, Date enrol, Date lastAccess,
+                   boolean b, char s1, String cpa, String computerProgrammerAnalyst, int i) throws InvalidIdException, InvalidNameException, InvalidPasswordException {
+        super();
+        setId(l);
+        setPassword(password);
     }
 
     /**
@@ -130,15 +141,26 @@ public class Student extends User
     @Override
     public String toString()
     {
-        User user = new User();
-        Faculty faculty = new Faculty();
-        Mark mark = new Mark
-                (
-                        "WEBD2201",
-                        "Web Development - Fundamentals",
-                        71,
-                        4.0f
-                );
+        User user = null;
+        try {user = new User();} catch (InvalidIdException e) {throw new RuntimeException(e);}
+        catch (InvalidNameException e) {throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+        Faculty faculty = null;
+        try {faculty = new Faculty();}
+        catch (InvalidIdException | InvalidNameException | InvalidPasswordException e) {throw new RuntimeException(e);}
+        Mark mark = null;
+        try {
+            mark = new Mark
+                    (
+                            "WEBD2201",
+                            "Web Development - Fundamentals",
+                            71,
+                            4.0f
+                    );
+        }
+        catch (InvalidIdException e) {throw new RuntimeException(e);}
+        catch (InvalidNameException e) {throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
         DateFormat DF = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CANADA);
 
         return String.format

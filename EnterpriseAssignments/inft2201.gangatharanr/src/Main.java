@@ -21,7 +21,7 @@ public class Main
      *
      * @param args Command line arguments (not used in this application).
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         User user = new User();
         Faculty faculty = new Faculty();

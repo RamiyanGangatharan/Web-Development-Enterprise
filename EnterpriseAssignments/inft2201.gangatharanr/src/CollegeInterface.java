@@ -13,6 +13,7 @@ public interface CollegeInterface
      * The name of the college.
      */
     public static String COLLEGE_NAME = "Durham College";
+
     /**
      * The primary contact phone number of the college.
      */
