@@ -8,7 +8,7 @@ import java.util.Vector;
  * It provides methods to get and set the student's program information and academic records.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public class Student extends User
@@ -88,8 +88,8 @@ public class Student extends User
     /**
      * Default constructor. Initializes a new student with default values for program code and year of study.
      */
-    public Student()
-    {
+    public Student() throws InvalidNameException, InvalidPasswordException, InvalidIdException {
+        super();
         this.programCode = DEFAULT_PROGRAM_CODE;
         this.year = DEFAULT_YEAR;
     }
@@ -101,8 +101,7 @@ public class Student extends User
      * @param year The current year of study of the student.
      * @param marks A Vector of Mark objects representing the student's academic marks.
      */
-    public Student(String programCode, int year, Vector<Mark> marks)
-    {
+    public Student(String programCode, int year, Vector<Mark> marks) throws InvalidNameException, InvalidPasswordException, InvalidIdException {
         super();
         this.programCode = programCode;
         this.year = year;
@@ -115,8 +114,7 @@ public class Student extends User
      * @param programCode The program code of the student.
      * @param year The current year of study of the student.
      */
-    public Student(String programCode, int year)
-    {
+    public Student(String programCode, int year) throws InvalidNameException, InvalidPasswordException, InvalidIdException {
         super();
         this.programCode = programCode;
         this.year = year;
@@ -130,46 +128,64 @@ public class Student extends User
     @Override
     public String toString()
     {
-        User user = new User();
-        Faculty faculty = new Faculty();
-        Mark mark = new Mark
-                (
-                        "WEBD2201",
-                        "Web Development - Fundamentals",
-                        71,
-                        4.0f
-                );
+        User user = null;
+        try {user = new User();}
+        catch (InvalidIdException e)
+        {throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+        catch (InvalidNameException e) {throw new RuntimeException(e);}
+
+        Faculty faculty = null;
+        try {faculty = new Faculty();}
+        catch (InvalidIdException e) { throw new RuntimeException(e);} catch (InvalidNameException e)
+        {throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+
+        Mark mark = null;
+        try {
+            mark = new Mark
+                    (
+                            "WEBD2201",
+                            "Web Development - Fundamentals",
+                            71,
+                            4.0f
+                    );
+        }
+        catch (InvalidIdException e) {throw new RuntimeException(e);}
+        catch (InvalidNameException e) {throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+
         DateFormat DF = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CANADA);
 
         return String.format
-                (
-                        "Faculty Info for: %d \n" +
-                                "\tName: %s %s (%s) \n" +
-                                "\tCreated on: %s\n" +
-                                "\tLast Access: %s \n" +
-                                "\tInstitution: " + COLLEGE_NAME +", %s \n" +
-                                "\tOffice: %s \n" +
-                                "\tNumber: " + PHONE_NUMBER + " - x" + "%s \n" +
-                                "\tCourse: %s %s %s " + "-" + " %s\n" +
-                                "\tInfo: Currently in %s" + "st" + " year of " + "'" + DEFAULT_PROGRAM_DESCRIPTION +
-                                    "'" + " (" + DEFAULT_PROGRAM_CODE + ")\n" +
-                                "\tEnrolled: (%s) %s",
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getEmailAddress(),
-                        DF.format(user.getEnrolDate()),
-                        DF.format(user.getLastAccess()),
-                        faculty.getSchoolDescription(),
-                        faculty.getOffice(),
-                        faculty.getExtension(),
-                        mark.getCourseCode(),
-                        String.format("%-35s", mark.getCourseName()),
-                        mark.getResult(),
-                        mark.getGpaWeighting(),
-                        getYear(),
-                        getProgramCode(),
-                        user.getEnrolDate()
-                );
+        (
+                "Faculty Info for: %d \n" +
+                        "\tName: %s %s (%s) \n" +
+                        "\tCreated on: %s\n" +
+                        "\tLast Access: %s \n" +
+                        "\tInstitution: " + COLLEGE_NAME +", %s \n" +
+                        "\tOffice: %s \n" +
+                        "\tNumber: " + PHONE_NUMBER + " - x" + "%s \n" +
+                        "\tCourse: %s %s %s " + "-" + " %s\n" +
+                        "\tInfo: Currently in %s" + "st" + " year of " + "'" + DEFAULT_PROGRAM_DESCRIPTION +
+                        "'" + " (" + DEFAULT_PROGRAM_CODE + ")\n" +
+                        "\tEnrolled: (%s) %s",
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmailAddress(),
+                DF.format(user.getEnrolDate()),
+                DF.format(user.getLastAccess()),
+                faculty.getSchoolDescription(),
+                faculty.getOffice(),
+                faculty.getExtension(),
+                mark.getCourseCode(),
+                String.format("%-35s", mark.getCourseName()),
+                mark.getResult(),
+                mark.getGpaWeighting(),
+                getYear(),
+                getProgramCode(),
+                user.getEnrolDate()
+        );
     }
 }

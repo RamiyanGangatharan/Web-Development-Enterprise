@@ -8,7 +8,7 @@ import java.util.Locale;
  * methods to get and set the faculty member's professional details.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public class Faculty extends User
@@ -113,7 +113,7 @@ public class Faculty extends User
     /**
      * Default constructor. Initializes a new faculty member with default values for school code, school description, office location, and phone extension.
      */
-    public Faculty()
+    public Faculty() throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         // Call to parent's default constructor
         super();
@@ -146,6 +146,7 @@ public class Faculty extends User
         long id, String password, String firstName, String lastName, String emailAddress, Date enrolDate, Date lastAccess,
         boolean enabled, char type, String schoolCode, String schoolDescription, String office, int extension
     )
+        throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         // Call to parent's parameterized constructor
         super(id, password, firstName, lastName, emailAddress, lastAccess, enrolDate, enabled, type);

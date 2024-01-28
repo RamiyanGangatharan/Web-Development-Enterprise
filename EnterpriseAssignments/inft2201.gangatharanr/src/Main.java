@@ -9,7 +9,7 @@
  * classes to demonstrate their functionality and interactions.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 
@@ -21,7 +21,7 @@ public class Main
      *
      * @param args Command line arguments (not used in this application).
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         User user = new User();
         Faculty faculty = new Faculty();

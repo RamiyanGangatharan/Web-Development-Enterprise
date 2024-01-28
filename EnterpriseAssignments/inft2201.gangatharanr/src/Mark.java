@@ -8,7 +8,7 @@ import java.util.Locale;
  * It provides methods to get and set details of a student's academic record.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public class Mark extends User
@@ -113,7 +113,9 @@ public class Mark extends User
      * @param gpaWeighting The GPA weighting for the course.
      */
     public Mark(String courseCode, String courseName, int result, float gpaWeighting)
+            throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
+        super();
         setCourseCode(courseCode);
         setCourseName(courseName);
         setResult(result);
@@ -128,8 +130,14 @@ public class Mark extends User
     @Override
     public String toString()
     {
-        User user = new User();
-        Faculty faculty = new Faculty();
+        User user = null;
+        try{user = new User();}
+        catch (InvalidIdException | InvalidPasswordException | InvalidNameException e){throw new RuntimeException(e);}
+        Faculty faculty = null;
+        try {faculty = new Faculty();}
+        catch (InvalidIdException e) {throw new RuntimeException(e);}
+        catch (InvalidNameException e) { throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
         DateFormat DF = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CANADA);
 
         return String.format

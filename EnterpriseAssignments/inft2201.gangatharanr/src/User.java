@@ -8,7 +8,7 @@ import java.util.Locale;
  * to get and set user attributes and other functionalities like ID verification and printing user information.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 
@@ -51,10 +51,32 @@ public class User implements CollegeInterface
     public static DateFormat getDF() {return DF;}
 
     // Mutator Methods
-    public void setId(long id) {this.id = id; }
-    public void setPassword(String password) {this.password = password;}
-    public void setFirstName(String firstName) {this.firstName = firstName;}
-    public void setLastName(String lastName) {this.lastName = lastName;}
+    public void setId(long id) throws InvalidIdException
+    {
+        if(verifyId(id)){this.id = id;}
+        else{throw new InvalidIdException("This ID is not valid!");}
+    }
+    public void setPassword(String password) throws InvalidPasswordException
+    {
+        if
+        (
+            !password.isEmpty() &&
+            password.length() >= MINIMUM_PASSWORD_LENGTH && password.length() <= MAXIMUM_PASSWORD_LENGTH)
+            {this.password = password;}
+        else{throw new InvalidPasswordException("This is an invalid password!");}
+    }
+
+    //This is the first time I have used REGEX in java but it essentially checks if the input is numeric.
+    public void setFirstName(String firstName) throws InvalidNameException
+    {
+        if(!firstName.isEmpty() && !firstName.matches("\\d+")) {this.firstName = firstName;}
+        else {throw new InvalidNameException("This firstname is not valid!");}
+    }
+    public void setLastName(String lastName) throws InvalidNameException
+    {
+        if (!lastName.isEmpty() && !lastName.matches("\\d+")){this.lastName = lastName;}
+        else { throw new InvalidNameException("This lastname is not valid!"); }
+    }
     public void setEmailAddress(String emailAddress) {this.emailAddress = emailAddress;}
     public void setLastAccess(Date lastAccess) {this.lastAccess = lastAccess;}
     public void setEnrolDate(Date enrolDate) {this.enrolDate = enrolDate; }
@@ -64,7 +86,7 @@ public class User implements CollegeInterface
     /**
      * Default constructor. Initializes a user with default values for all fields.
      */
-    public User()
+    public User() throws InvalidIdException, InvalidPasswordException, InvalidNameException
     {
         // Initialization
         setId(DEFAULT_ID);
@@ -96,6 +118,7 @@ public class User implements CollegeInterface
         long id, String password, String firstName, String lastName, String emailAddress,
         Date lastAccess, Date enrolDate, boolean enabled, char type
     )
+            throws InvalidIdException, InvalidNameException, InvalidPasswordException
     {
         // Initialization
         setId(id);
