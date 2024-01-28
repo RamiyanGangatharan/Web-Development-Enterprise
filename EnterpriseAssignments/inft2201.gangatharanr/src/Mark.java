@@ -8,7 +8,7 @@ import java.util.Locale;
  * It provides methods to get and set details of a student's academic record.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public class Mark extends User

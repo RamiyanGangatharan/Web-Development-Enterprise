@@ -1,5 +1,4 @@
 import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
 
@@ -9,7 +8,7 @@ import java.util.Vector;
  * It provides methods to get and set the student's program information and academic records.
  *
  * @author Ramiyan Gangatharan
- * @version 1.5 (January 24, 2024)
+ * @version 1.6 (January 28, 2024)
  * @since 1.0 (January 14, 2024)
  */
 public class Student extends User
@@ -42,7 +41,7 @@ public class Student extends User
     /**
      * A Vector containing the student's academic marks.
      */
-    private Vector<Mark> marks = new Vector<>();
+    private Vector<Mark> marks = new Vector<Mark>();
 
     /**
      * Retrieves the program code of the student.
@@ -89,8 +88,7 @@ public class Student extends User
     /**
      * Default constructor. Initializes a new student with default values for program code and year of study.
      */
-    public Student() throws InvalidIdException, InvalidNameException, InvalidPasswordException
-    {
+    public Student() throws InvalidNameException, InvalidPasswordException, InvalidIdException {
         super();
         this.programCode = DEFAULT_PROGRAM_CODE;
         this.year = DEFAULT_YEAR;
@@ -103,9 +101,7 @@ public class Student extends User
      * @param year The current year of study of the student.
      * @param marks A Vector of Mark objects representing the student's academic marks.
      */
-    public Student(String programCode, int year, Vector<Mark> marks)
-            throws InvalidIdException, InvalidNameException, InvalidPasswordException
-    {
+    public Student(String programCode, int year, Vector<Mark> marks) throws InvalidNameException, InvalidPasswordException, InvalidIdException {
         super();
         this.programCode = programCode;
         this.year = year;
@@ -118,19 +114,10 @@ public class Student extends User
      * @param programCode The program code of the student.
      * @param year The current year of study of the student.
      */
-    public Student(String programCode, int year)
-            throws InvalidIdException, InvalidNameException, InvalidPasswordException
-    {
+    public Student(String programCode, int year) throws InvalidNameException, InvalidPasswordException, InvalidIdException {
         super();
         this.programCode = programCode;
         this.year = year;
-    }
-
-    public Student(long l, String password, String robert, String mcReady, String s, Date enrol, Date lastAccess,
-                   boolean b, char s1, String cpa, String computerProgrammerAnalyst, int i) throws InvalidIdException, InvalidNameException, InvalidPasswordException {
-        super();
-        setId(l);
-        setPassword(password);
     }
 
     /**
@@ -142,12 +129,18 @@ public class Student extends User
     public String toString()
     {
         User user = null;
-        try {user = new User();} catch (InvalidIdException e) {throw new RuntimeException(e);}
-        catch (InvalidNameException e) {throw new RuntimeException(e);}
+        try {user = new User();}
+        catch (InvalidIdException e)
+        {throw new RuntimeException(e);}
         catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+        catch (InvalidNameException e) {throw new RuntimeException(e);}
+
         Faculty faculty = null;
         try {faculty = new Faculty();}
-        catch (InvalidIdException | InvalidNameException | InvalidPasswordException e) {throw new RuntimeException(e);}
+        catch (InvalidIdException e) { throw new RuntimeException(e);} catch (InvalidNameException e)
+        {throw new RuntimeException(e);}
+        catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+
         Mark mark = null;
         try {
             mark = new Mark
@@ -161,37 +154,38 @@ public class Student extends User
         catch (InvalidIdException e) {throw new RuntimeException(e);}
         catch (InvalidNameException e) {throw new RuntimeException(e);}
         catch (InvalidPasswordException e) {throw new RuntimeException(e);}
+
         DateFormat DF = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.CANADA);
 
         return String.format
-                (
-                        "Faculty Info for: %d \n" +
-                                "\tName: %s %s (%s) \n" +
-                                "\tCreated on: %s\n" +
-                                "\tLast Access: %s \n" +
-                                "\tInstitution: " + COLLEGE_NAME +", %s \n" +
-                                "\tOffice: %s \n" +
-                                "\tNumber: " + PHONE_NUMBER + " - x" + "%s \n" +
-                                "\tCourse: %s %s %s " + "-" + " %s\n" +
-                                "\tInfo: Currently in %s" + "st" + " year of " + "'" + DEFAULT_PROGRAM_DESCRIPTION +
-                                    "'" + " (" + DEFAULT_PROGRAM_CODE + ")\n" +
-                                "\tEnrolled: (%s) %s",
-                        user.getId(),
-                        user.getFirstName(),
-                        user.getLastName(),
-                        user.getEmailAddress(),
-                        DF.format(user.getEnrolDate()),
-                        DF.format(user.getLastAccess()),
-                        faculty.getSchoolDescription(),
-                        faculty.getOffice(),
-                        faculty.getExtension(),
-                        mark.getCourseCode(),
-                        String.format("%-35s", mark.getCourseName()),
-                        mark.getResult(),
-                        mark.getGpaWeighting(),
-                        getYear(),
-                        getProgramCode(),
-                        user.getEnrolDate()
-                );
+        (
+                "Faculty Info for: %d \n" +
+                        "\tName: %s %s (%s) \n" +
+                        "\tCreated on: %s\n" +
+                        "\tLast Access: %s \n" +
+                        "\tInstitution: " + COLLEGE_NAME +", %s \n" +
+                        "\tOffice: %s \n" +
+                        "\tNumber: " + PHONE_NUMBER + " - x" + "%s \n" +
+                        "\tCourse: %s %s %s " + "-" + " %s\n" +
+                        "\tInfo: Currently in %s" + "st" + " year of " + "'" + DEFAULT_PROGRAM_DESCRIPTION +
+                        "'" + " (" + DEFAULT_PROGRAM_CODE + ")\n" +
+                        "\tEnrolled: (%s) %s",
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmailAddress(),
+                DF.format(user.getEnrolDate()),
+                DF.format(user.getLastAccess()),
+                faculty.getSchoolDescription(),
+                faculty.getOffice(),
+                faculty.getExtension(),
+                mark.getCourseCode(),
+                String.format("%-35s", mark.getCourseName()),
+                mark.getResult(),
+                mark.getGpaWeighting(),
+                getYear(),
+                getProgramCode(),
+                user.getEnrolDate()
+        );
     }
 }
