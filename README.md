@@ -11,9 +11,4 @@ Victor Mahilin
 
 ## Table of Contents
 - [Java Documentation](EnterpriseAssignments/Javadocs)
-- [Main.java](EnterpriseAssignments/inft2201.gangatharanr/src/Main.java)
-- [CollegeInterface.java](EnterpriseAssignments/inft2201.gangatharanr/src/CollegeInterface.java)
-- [Faculty.java](EnterpriseAssignments/inft2201.gangatharanr/src/Faculty.java)
-- [Mark.java](EnterpriseAssignments/inft2201.gangatharanr/src/Mark.java)
-- [Student.java](EnterpriseAssignments/inft2201.gangatharanr/src/Student.java)
-- [User.java](EnterpriseAssignments/inft2201.gangatharanr/src/User.java)
+- [Source Code](EnterpriseAssignments/inft2201.gangatharanr/src/inft2201/gangatharanr)
